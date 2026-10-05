@@ -1,0 +1,2220 @@
+<!DOCTYPE html>
+<html lang="id">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+
+    <title>Toko Parfum Cardify</title>
+
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+
+    <link
+        href="https://fonts.googleapis.com/css2?family=Poppins:wght@300;400;500;600;700&display=swap"
+        rel="stylesheet">
+
+    <link
+        rel="stylesheet"
+        href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.2/css/all.min.css">
+
+    <link rel="stylesheet" href="style.css">
+  
+    <link rel="manifest" href="manifest.json">
+    <meta name="theme-color" content="#62c8b7">
+</head>
+
+<body>
+
+<!-- =====================================================
+     SPLASH SCREEN
+===================================================== -->
+
+<div id="splashScreen" class="splash-screen">
+
+    <div class="splash-content">
+
+        <div class="splash-logo">
+            <img src="logo.png" alt="">
+        </div>
+
+        <h1>Cardify
+        </h1>
+
+        <p>Smart Inventory, Better Control</p>
+
+        <div class="loading-wrapper">
+
+            <div class="loading-bar">
+                <span id="loadingProgress"></span>
+            </div>
+
+            <div class="loading-info">
+
+                <span>
+                    Menyiapkan aplikasi...
+                </span>
+
+                <strong id="loadingPercent">
+                    0%
+                </strong>
+
+            </div>
+
+        </div>
+
+    </div>
+
+</div>
+
+
+<!-- =====================================================
+     LOGIN
+===================================================== -->
+
+<section id="loginPage" class="login-page hidden">
+
+    <div class="login-card">
+
+        <div class="login-logo">
+    <img src="logo.png" alt="Cardify">
+</div>
+
+        <h1>
+            Cardify
+        </h1>
+
+        <p class="login-subtitle">
+            Kelola barang toko dengan mudah
+        </p>
+
+
+        <form id="loginForm">
+
+            <div class="form-group">
+
+                <label>
+                    Username
+                </label>
+
+                <div class="input-icon">
+
+                    <i class="fa-solid fa-user"></i>
+
+                    <input
+                        type="text"
+                        id="username"
+                        placeholder="Masukkan username"
+                        autocomplete="username"
+                        required
+                    >
+
+                </div>
+
+            </div>
+
+
+            <div class="form-group">
+
+                <label>
+                    Password
+                </label>
+
+                <div class="input-icon password-box">
+
+                    <i class="fa-solid fa-lock"></i>
+
+                    <input
+                        type="password"
+                        id="password"
+                        placeholder="Masukkan password"
+                        autocomplete="current-password"
+                        required
+                    >
+
+                    <button
+                        type="button"
+                        id="showPassword"
+                        class="show-password"
+                        aria-label="Tampilkan password"
+                    >
+
+                        <i class="fa-solid fa-eye"></i>
+
+                    </button>
+
+                </div>
+
+            </div>
+
+
+            <button
+                type="submit"
+                class="primary-btn login-btn"
+            >
+
+                <i class="fa-solid fa-right-to-bracket"></i>
+
+                Masuk
+
+            </button>
+
+        </form>
+
+
+        <div class="login-divider">
+            <span>atau</span>
+        </div>
+
+
+        <button
+            id="openRegisterBtn"
+            class="outline-btn"
+            type="button"
+        >
+
+            <i class="fa-solid fa-user-plus"></i>
+
+            Buat Akun Baru
+
+        </button>
+
+
+        <p
+            id="loginMessage"
+            class="login-message"
+        ></p>
+
+    </div>
+
+</section>
+
+
+<!-- =====================================================
+     MODAL BUAT AKUN
+===================================================== -->
+
+<div
+    id="registerModal"
+    class="modal-overlay hidden"
+>
+
+    <div class="modal">
+
+        <div class="modal-header">
+
+            <div>
+
+                <h2>
+                    Buat Akun Baru
+                </h2>
+
+                <p>
+                    Buat akun baru untuk pengguna toko.
+                </p>
+
+            </div>
+
+            <button
+                class="modal-close"
+                data-close="registerModal"
+                type="button"
+            >
+
+                <i class="fa-solid fa-xmark"></i>
+
+            </button>
+
+        </div>
+
+
+        <form id="registerForm">
+
+            <div class="form-group">
+
+                <label>
+                    Nama Lengkap
+                </label>
+
+                <input
+                    type="text"
+                    id="registerName"
+                    placeholder="Contoh: Sinta"
+                    required
+                >
+
+            </div>
+
+
+            <div class="form-group">
+
+                <label>
+                    Username
+                </label>
+
+                <input
+                    type="text"
+                    id="registerUsername"
+                    placeholder="Buat username"
+                    required
+                >
+
+            </div>
+
+
+            <div class="form-group">
+
+                <label>
+                    Password
+                </label>
+
+                <input
+                    type="password"
+                    id="registerPassword"
+                    placeholder="Buat password"
+                    required
+                >
+
+            </div>
+
+
+            <div class="form-group">
+
+                <label>
+                    Konfirmasi Password
+                </label>
+
+                <input
+                    type="password"
+                    id="registerConfirmPassword"
+                    placeholder="Ulangi password"
+                    required
+                >
+
+            </div>
+<div class="form-group">
+
+    <label>
+        Role
+    </label>
+
+    <div class="custom-role-select" id="registerRoleSelect">
+
+        <button
+            type="button"
+            class="custom-role-trigger"
+            id="registerRoleTrigger"
+        >
+            <span class="custom-role-selected">
+                <i class="fa-solid fa-users"></i>
+                Staff
+            </span>
+
+            <i class="fa-solid fa-chevron-down custom-role-arrow"></i>
+        </button>
+
+        <div class="custom-role-options">
+
+            <button
+                type="button"
+                class="custom-role-option active"
+                data-value="Staff"
+            >
+                <span class="role-option-icon">
+                    <i class="fa-solid fa-users"></i>
+                </span>
+
+                <span>
+                    <strong>Staff</strong>
+                    <small>Pengguna toko</small>
+                </span>
+
+                <i class="fa-solid fa-check role-check"></i>
+            </button>
+
+            <button
+                type="button"
+                class="custom-role-option"
+                data-value="Administrator"
+            >
+                <span class="role-option-icon">
+                    <i class="fa-solid fa-shield-halved"></i>
+                </span>
+
+                <span>
+                    <strong>Administrator</strong>
+                    <small>Akses penuh sistem</small>
+                </span>
+
+                <i class="fa-solid fa-check role-check"></i>
+            </button>
+
+        </div>
+
+    </div>
+
+    <input
+        type="hidden"
+        id="registerRole"
+        value="Staff"
+    >
+
+</div>
+            <p
+                id="registerMessage"
+                class="form-message"
+            ></p>
+
+
+            <div class="modal-actions">
+
+                <button
+                    type="button"
+                    class="cancel-btn"
+                    data-close="registerModal"
+                >
+                    Batal
+                </button>
+
+
+                <button
+                    type="submit"
+                    class="primary-btn"
+                >
+
+                    <i class="fa-solid fa-user-plus"></i>
+
+                    Buat Akun
+
+                </button>
+
+            </div>
+
+        </form>
+
+    </div>
+
+</div>
+  
+<!-- =====================================================
+     APP
+===================================================== -->
+
+<div id="app" class="app hidden">
+
+
+    <!-- SIDEBAR OVERLAY -->
+
+    <div
+        id="sidebarOverlay"
+        class="sidebar-overlay"
+    ></div>
+
+
+    <!-- =================================================
+         SIDEBAR
+    ================================================== -->
+
+    <aside
+        id="sidebar"
+        class="sidebar"
+    >
+
+        <div class="sidebar-brand">
+
+            <div class="brand-icon">
+    <img src="logo.png" alt="Cardify">
+</div>
+          
+            <div>
+
+                <strong>
+                    Toko Parfum
+                </strong>
+
+                <span>
+                    Cardify
+                </span>
+
+            </div>
+
+        </div>
+
+
+        <div class="sidebar-user">
+
+            <div class="user-avatar">
+
+                <i class="fa-solid fa-user"></i>
+
+            </div>
+
+            <div>
+
+                <strong id="sidebarUsername">
+                    Admin
+                </strong>
+
+                <span id="sidebarRole">
+                    Administrator
+                </span>
+
+            </div>
+
+        </div>
+
+
+        <nav class="sidebar-menu">
+
+            <button
+                class="menu-item active"
+                data-page="dashboard"
+                type="button"
+            >
+
+                <i class="fa-solid fa-house"></i>
+
+                <span>
+                    Dashboard
+                </span>
+
+            </button>
+
+
+            <button
+                class="menu-item"
+                data-page="inventaris"
+                type="button"
+            >
+
+                <i class="fa-solid fa-box"></i>
+
+                <span>
+                    Inventaris
+                </span>
+
+            </button>
+
+
+            <button
+                class="menu-item"
+                data-page="transaksi"
+                type="button"
+            >
+
+                <i class="fa-solid fa-right-left"></i>
+
+                <span>
+                    Transaksi Stok
+                </span>
+
+            </button>
+
+
+            <button
+                class="menu-item"
+                data-page="riwayat"
+                type="button"
+            >
+
+                <i class="fa-solid fa-clock-rotate-left"></i>
+
+                <span>
+                    Riwayat
+                </span>
+
+            </button>
+
+
+            <button
+                class="menu-item"
+                data-page="profile"
+                type="button"
+            >
+
+                <i class="fa-solid fa-user"></i>
+
+                <span>
+                    Profile
+                </span>
+
+            </button>
+
+
+            <button
+                class="menu-item"
+                data-page="histori"
+                type="button"
+            >
+
+                <i class="fa-solid fa-file-lines"></i>
+
+                <span>
+                    Histori Akun
+                </span>
+
+            </button>
+
+        </nav>
+
+
+        <button
+            id="logoutBtn"
+            class="logout-btn"
+            type="button"
+        >
+
+            <i class="fa-solid fa-right-from-bracket"></i>
+
+            <span>
+                Keluar
+            </span>
+
+        </button>
+
+    </aside>
+
+
+    <!-- =================================================
+         MAIN CONTENT
+    ================================================== -->
+
+    <main class="main-content">
+
+
+        <!-- TOPBAR -->
+
+        <header class="topbar">
+
+            <button
+                id="menuToggle"
+                class="menu-toggle"
+                type="button"
+                aria-label="Buka menu"
+            >
+
+                <i class="fa-solid fa-bars"></i>
+
+            </button>
+
+
+            <div class="topbar-title">
+
+                <h2 id="pageTitle">
+                    Dashboard
+                </h2>
+
+                <span>
+                    Sistem Toko Parfum Cardify
+                </span>
+
+            </div>
+
+
+            <div class="topbar-right">
+                <div class="google-sync-widget" title="Status Google Sheets">
+                    <span id="googleSyncStatus">Mode lokal</span>
+                    <button id="googleSheetsSyncBtn" type="button" aria-label="Sinkronkan Google Sheets">
+                        <i class="fa-solid fa-rotate"></i>
+                    </button>
+                </div>
+
+<!-- NOTIFIKASI -->
+<div class="notification-wrapper">
+
+    <button
+        id="notificationBtn"
+        class="notification-btn"
+        type="button"
+        aria-label="Notifikasi"
+    >
+
+        <i class="fa-regular fa-bell"></i>
+
+        <span
+            id="notificationBadge"
+            class="notification-badge hidden"
+        ></span>
+
+    </button>
+
+
+    <!-- PANEL NOTIFIKASI -->
+    <div
+        id="notificationPanel"
+        class="notification-panel"
+    >
+
+        <div class="notification-header">
+
+            <div>
+                <strong>
+                    Notifikasi
+                </strong>
+
+                <span>
+                    Pembaruan Cardify
+                </span>
+            </div>
+
+            <button
+                id="markAllReadBtn"
+                type="button"
+            >
+                Tandai dibaca
+            </button>
+
+        </div>
+
+
+        <div
+            id="notificationList"
+            class="notification-list"
+        ></div>
+
+    </div>
+
+</div>
+
+                <div class="top-user">
+
+                    <div class="top-avatar">
+
+                        <i class="fa-solid fa-user"></i>
+
+                    </div>
+
+                    <strong id="topUsername">
+                        Admin
+                    </strong>
+
+                </div>
+
+            </div>
+
+        </header>
+
+<!-- =================================================
+     DASHBOARD
+================================================== -->
+
+<section id="page-dashboard" class="page active">
+
+    <!-- WELCOME BANNER -->
+    <div class="dashboard-welcome">
+
+        <div class="welcome-content">
+
+            <div class="welcome-text">
+
+                <span class="welcome-small">
+                    Selamat Datang di Toko Parfum Cardify
+                </span>
+
+                <h1>
+                    <span id="welcomeUsername">
+                        Siap Mengelola?
+                    </span>
+                </h1>
+
+                <p>
+                    Pantau stok, cek kondisi, dan atur seluruh
+                  inventaris Toko Parfum Cardify dalam satu tempat.
+                </p>
+
+            </div>
+
+        </div>
+
+        <div class="welcome-decoration">
+
+            <div class="decoration-circle circle-one"></div>
+
+            <div class="decoration-circle circle-two"></div>
+
+            
+
+        </div>
+
+    </div>
+
+
+    <!-- STATISTIK -->
+    <div class="dashboard-stats">
+
+        <div class="dashboard-stat-card">
+
+            <div class="dashboard-stat-icon">
+
+                <i class="fa-solid fa-box"></i>
+
+            </div>
+
+            <div class="dashboard-stat-info">
+
+                <span>Total Barang</span>
+
+                <strong id="totalBarang">
+                    0
+                </strong>
+
+            </div>
+
+        </div>
+
+
+        <div class="dashboard-stat-card">
+
+            <div class="dashboard-stat-icon green">
+
+                <i class="fa-solid fa-circle-check"></i>
+
+            </div>
+
+            <div class="dashboard-stat-info">
+
+                <span>Stok Aman</span>
+
+                <strong id="stokAman">
+                    0
+                </strong>
+
+            </div>
+
+        </div>
+
+
+        <div class="dashboard-stat-card">
+
+            <div class="dashboard-stat-icon orange">
+
+                <i class="fa-solid fa-triangle-exclamation"></i>
+
+            </div>
+
+            <div class="dashboard-stat-info">
+
+                <span>Stok Menipis</span>
+
+                <strong id="stokMenipis">
+                    0
+                </strong>
+
+            </div>
+
+        </div>
+
+
+        <div class="dashboard-stat-card">
+
+            <div class="dashboard-stat-icon blue">
+
+                <i class="fa-solid fa-wallet"></i>
+
+            </div>
+
+            <div class="dashboard-stat-info">
+
+                <span>Total Nilai</span>
+
+                <strong id="totalNilai">
+                    Rp0
+                </strong>
+
+            </div>
+
+        </div>
+
+    </div>
+
+
+    <!-- KONDISI BARANG -->
+    <div class="dashboard-section">
+
+        <div class="dashboard-section-heading">
+
+            <div>
+
+                <h2>
+                    Kondisi Barang
+                </h2>
+
+                <p>
+                    Ringkasan kondisi inventaris saat ini
+                </p>
+
+            </div>
+
+        </div>
+
+
+        <div class="condition-grid dashboard-condition-grid">
+
+            <div class="condition-card dashboard-condition-card">
+
+                <div class="condition-dot good">
+
+                    <i class="fa-solid fa-check"></i>
+
+                </div>
+
+                <div>
+
+                    <span>
+                        Baik
+                    </span>
+
+                    <strong id="conditionBaik">
+                        0
+                    </strong>
+
+                </div>
+
+            </div>
+
+
+            <div class="condition-card dashboard-condition-card">
+
+                <div class="condition-dot warning">
+
+                    <i class="fa-solid fa-exclamation"></i>
+
+                </div>
+
+                <div>
+
+                    <span>
+                        Rusak Ringan
+                    </span>
+
+                    <strong id="conditionRingan">
+                        0
+                    </strong>
+
+                </div>
+
+            </div>
+
+
+            <div class="condition-card dashboard-condition-card">
+
+                <div class="condition-dot danger">
+
+                    <i class="fa-solid fa-xmark"></i>
+
+                </div>
+
+                <div>
+
+                    <span>
+                        Rusak Berat
+                    </span>
+
+                    <strong id="conditionBerat">
+                        0
+                    </strong>
+
+                </div>
+
+            </div>
+
+        </div>
+
+    </div>
+
+
+    <!-- BARANG TERBARU -->
+    <div class="dashboard-section dashboard-items-section">
+
+        <div class="dashboard-section-heading">
+
+            <div>
+
+                <h2>
+                    Barang Terbaru
+                </h2>
+
+                <p>
+                    Beberapa barang yang tersimpan di inventaris
+                </p>
+
+            </div>
+
+
+            <button
+                type="button"
+                class="dashboard-see-all"
+                onclick="navigate('inventaris')"
+            >
+
+                Lihat Semua
+
+                <i class="fa-solid fa-chevron-right"></i>
+
+            </button>
+
+        </div>
+
+
+        <div
+            id="dashboardBarangList"
+            class="dashboard-barang-list"
+        >
+
+            <!-- DIISI OTOMATIS OLEH JAVASCRIPT -->
+
+        </div>
+
+    </div>
+
+
+</section>
+
+            
+        <!-- =================================================
+             INVENTARIS
+        ================================================== -->
+
+        <section
+            id="page-inventaris"
+            class="page"
+        >
+
+            <div class="page-heading">
+
+                <div>
+
+                    <h1>
+                        Inventaris Barang
+                    </h1>
+
+                    <p>
+                        Kelola semua barang yang tersedia
+                        di toko.
+                    </p>
+
+                </div>
+                
+            </div>
+
+
+            <!-- FILTER -->
+
+           <div class="toolbar">
+
+                <div class="search-box">
+
+                    <i class="fa-solid fa-magnifying-glass"></i>
+
+                    <input
+                        type="text"
+                        id="searchInput"
+                        placeholder="Cari nama atau kode barang..."
+                    >
+
+                </div>
+
+            <div class="custom-select" id="categoryFilterSelect">
+
+    <button type="button" class="custom-select-trigger">
+        <span class="custom-select-value">
+            Semua Kategori
+        </span>
+        <i class="fa-solid fa-chevron-down"></i>
+    </button>
+
+    <div class="custom-select-options">
+
+        <button type="button" data-value="all">Semua Kategori</button>
+        <button type="button" data-value="Makeup">Makeup</button>
+        <button type="button" data-value="Lotion">Lotion</button>
+        <button type="button" data-value="Aksesoris">Aksesoris</button>
+        <button type="button" data-value="Parfum">Parfum</button>
+        <button type="button" data-value="Lainnya">Lainnya</button>
+
+    </div>
+
+    <input type="hidden" id="categoryFilter" value="all">
+
+</div>
+
+
+<div class="custom-select" id="conditionFilterSelect">
+
+    <button type="button" class="custom-select-trigger">
+        <span class="custom-select-value">
+            Semua Kondisi
+        </span>
+        <i class="fa-solid fa-chevron-down"></i>
+    </button>
+
+    <div class="custom-select-options">
+
+        <button type="button" data-value="all">Semua Kondisi</button>
+        <button type="button" data-value="Baik">Baik</button>
+        <button type="button" data-value="Rusak Ringan">
+            Rusak Ringan
+        </button>
+        <button type="button" data-value="Rusak Berat">
+            Rusak Berat
+        </button>
+
+    </div>
+
+    <input type="hidden" id="conditionFilter" value="all">
+
+</div>
+           </div>
+          
+        <div class="inventory-actions">
+
+    <button
+        id="importBarangBtn"
+        class="outline-btn"
+        type="button"
+    >
+        <i class="fa-solid fa-file-import"></i>
+        Import
+    </button>
+
+    <input
+        type="file"
+        id="importFile"
+        accept=".csv"
+        hidden
+    >
+
+    <button
+        id="exportBarangBtn"
+        class="outline-btn"
+        type="button"
+    >
+        <i class="fa-solid fa-file-export"></i>
+        Export
+    </button>
+
+    <button
+        id="addBarangBtn"
+        class="primary-btn"
+        type="button"
+    >
+        <i class="fa-solid fa-plus"></i>
+        Tambah Barang
+    </button>
+
+</div>
+            <!-- TABLE -->
+
+            <div class="table-card">
+
+                <div class="table-responsive">
+
+                    <table>
+
+                        <thead>
+
+    <tr>
+
+        <th>No</th>
+
+        <th>Kode Barang</th>
+
+        <th>Barang</th>
+
+        <th>Kategori</th>
+
+        <th>Harga</th>
+
+        <th>Stok</th>
+
+        <th>Satuan</th>
+
+        <th>Supplier</th>
+
+        <th>Kondisi</th>
+
+        <th>Lokasi</th>
+
+        <th>Tanggal Masuk</th>
+
+        <th>Status</th>
+
+        <th>Aksi</th>
+
+    </tr>
+
+</thead>
+
+
+                        <tbody id="inventoryTable"></tbody>
+
+                    </table>
+
+                </div>
+
+              <div id="emptyState" class="empty-state hidden">
+    <strong>Belum ada barang</strong>
+    <span>Barang pada kategori ini belum ditambahkan.</span>
+</div>
+  
+          
+        </section>
+
+
+        <!-- =================================================
+             TRANSAKSI STOK
+        ================================================== -->
+
+        <section
+            id="page-transaksi"
+            class="page"
+        >
+
+            <div class="page-heading">
+                <div>
+                    <h1>Transaksi Stok</h1>
+                    <p>Tambah atau kurangi stok tanpa mengulang data barang.</p>
+                </div>
+            </div>
+
+            <div class="stock-transaction-grid">
+                <div class="cardify-transaction-card">
+                    <div class="transaction-card-heading">
+                        <div>
+                            <span class="transaction-eyebrow">STOK</span>
+                            <h2>Catat Transaksi</h2>
+                            <p>Pilih barang yang sudah ada. Nama, kategori, harga, dan satuan akan otomatis.</p>
+                        </div>
+                    </div>
+
+                    <form id="stockTransactionForm">
+                        <div class="form-group">
+                            <label>Barang</label>
+                            <div class="custom-select transaction-item-select" id="transactionBarangSelect">
+
+    <button
+        type="button"
+        class="custom-select-trigger"
+        aria-haspopup="listbox"
+        aria-expanded="false"
+    >
+
+<span class="custom-select-value">
+    <span class="transaction-select-icon">
+        <i class="fa-solid fa-box"></i>
+    </span>
+    <span class="transaction-select-text">
+        Pilih barang...
+    </span>
+</span>
+      
+        <i class="fa-solid fa-chevron-down"></i>
+    </button>
+
+    <div
+        class="custom-select-options transaction-item-options"
+        role="listbox"
+    ></div>
+
+    <input
+        type="hidden"
+        id="transactionBarang"
+        value=""
+        required
+    >
+
+</div>
+                            <small id="transactionBarangInfo" class="transaction-item-info">Stok saat ini: -</small>
+                        </div>
+
+                        <div class="transaction-type-grid">
+                            <label class="transaction-type-option active">
+                                <input type="radio" name="transactionType" value="masuk" checked>
+                                <span><i class="fa-solid fa-arrow-down"></i><strong>Barang Masuk</strong><small>Tambah stok</small></span>
+                            </label>
+                            <label class="transaction-type-option">
+                                <input type="radio" name="transactionType" value="keluar">
+                                <span><i class="fa-solid fa-arrow-up"></i><strong>Barang Keluar</strong><small>Kurangi stok</small></span>
+                            </label>
+                        </div>
+
+                        <div class="form-grid">
+                            <div class="form-group">
+                                <label>Jumlah</label>
+                                <input type="number" id="transactionQty" min="1" step="1" placeholder="Contoh: 5" required>
+                            </div>
+                            <div class="form-group">
+                                <label>Tanggal</label>
+                                <input type="date" id="transactionDate" required>
+                            </div>
+                        </div>
+
+                        <div class="form-group">
+                            <label>Keterangan <span class="optional-label">Opsional</span></label>
+                            <textarea id="transactionNote" rows="3" placeholder="Contoh: Restock supplier / penjualan"></textarea>
+                        </div>
+
+                        <button class="primary-btn transaction-submit" type="submit">
+                            <i class="fa-solid fa-floppy-disk"></i>
+                            Simpan Transaksi
+                        </button>
+                    </form>
+                </div>
+
+                <div class="cardify-transaction-card transaction-summary-card">
+                    <span class="transaction-eyebrow">RINGKASAN</span>
+                    <h2>Stok Terpilih</h2>
+                    <div id="transactionSummary" class="transaction-summary-empty">
+                        <i class="fa-solid fa-box-open"></i>
+                        <p>Pilih barang untuk melihat ringkasan.</p>
+                    </div>
+                </div>
+            </div>
+
+            <div class="table-card transaction-history-card">
+                <div class="transaction-history-heading">
+                    <div>
+                        <h2>Riwayat Transaksi Stok</h2>
+                        <p>Setiap perubahan stok tercatat otomatis.</p>
+                    </div>
+                    <button id="exportTransactionBtn" class="outline-btn" type="button">
+                        <i class="fa-solid fa-file-export"></i> Export CSV
+                    </button>
+                </div>
+                <div class="table-responsive">
+                    <table>
+                        <thead>
+                            <tr>
+                                <th>Tanggal</th>
+                                <th>Kode</th>
+                                <th>Barang</th>
+                                <th>Jenis</th>
+                                <th>Jumlah</th>
+                                <th>Stok Akhir</th>
+                                <th>Oleh</th>
+                                <th>Keterangan</th>
+                            </tr>
+                        </thead>
+                        <tbody id="stockTransactionTable"></tbody>
+                    </table>
+                </div>
+                <div id="stockTransactionEmpty" class="empty-state hidden">
+                    <strong>Belum ada transaksi</strong>
+                    <span>Transaksi stok yang disimpan akan muncul di sini.</span>
+                </div>
+            </div>
+
+        </section>
+
+
+        <!-- =================================================
+             RIWAYAT
+        ================================================== -->
+
+        <section
+            id="page-riwayat"
+            class="page"
+        >
+
+            <div class="page-heading">
+
+                <div>
+
+                    <h1>
+                        Riwayat
+                    </h1>
+
+                    <p>
+                        Aktivitas perubahan data inventaris.
+                    </p>
+
+                </div>
+
+            </div>
+
+
+            <div
+                id="historyList"
+                class="history-list"
+            ></div>
+
+        </section>
+
+<!-- =================================================
+     PROFILE
+================================================== -->
+
+<section
+    id="page-profile"
+    class="page profile-page"
+>
+
+    <div class="profile-header">
+        <div>
+            <span class="profile-label">ACCOUNT</span>
+
+            <h2>Profil</h2>
+
+            <p>
+                Kelola informasi akun dan foto profil Cardify.
+            </p>
+        </div>
+    </div>
+
+
+    <!-- PROFIL UTAMA -->
+
+    <div class="profile-main-card">
+
+        <div class="profile-cover"></div>
+
+        <div class="profile-main-content">
+
+            <div class="profile-photo-wrapper">
+
+                <div
+                    id="profileAvatar"
+                    class="profile-avatar"
+                >
+                    <i class="fa-solid fa-user"></i>
+                </div>
+
+                <label
+                    for="profileImageInput"
+                    class="profile-camera-btn"
+                    title="Ganti foto profil"
+                >
+                    <i class="fa-solid fa-camera"></i>
+                </label>
+
+                <input
+                    type="file"
+                    id="profileImageInput"
+                    accept="image/*"
+                    hidden
+                >
+
+            </div>
+
+
+            <div class="profile-identity">
+
+                <div class="profile-name-row">
+
+                    <h2 id="profileName">
+                        Nama Pengguna
+                    </h2>
+
+                    <span class="profile-active-badge">
+                        <i class="fa-solid fa-circle"></i>
+                        Aktif
+                    </span>
+
+                </div>
+
+                <p class="profile-username">
+                    @<span id="profileUsername">
+                        Admin
+                    </span>
+                </p>
+
+                <span
+                    id="profileRole"
+                    class="profile-role-badge"
+                >
+                    Administrator
+                </span>
+
+            </div>
+
+        </div>
+
+
+        <!-- DETAIL AKUN -->
+
+        <div class="profile-details">
+
+            <div class="profile-detail-item">
+
+                <span>
+                    <i class="fa-solid fa-user"></i>
+                    Nama
+                </span>
+
+                <strong id="profileDetailName">
+                    Nama Pengguna
+                </strong>
+
+            </div>
+
+
+            <div class="profile-detail-item">
+
+                <span>
+                    <i class="fa-solid fa-at"></i>
+                    Username
+                </span>
+
+                <strong id="profileDetailUsername">
+                    Admin
+                </strong>
+
+            </div>
+
+
+            <div class="profile-detail-item">
+
+                <span>
+                    <i class="fa-solid fa-shield-halved"></i>
+                    Role
+                </span>
+
+                <strong id="profileDetailRole">
+                    Administrator
+                </strong>
+
+            </div>
+
+            <button
+    type="button"
+    id="deleteCurrentAccountBtn"
+    class="profile-delete-account-btn"
+>
+    <i class="fa-solid fa-trash"></i>
+    Hapus Akun
+        </button>
+          
+        </div>
+
+    </div>
+
+
+    <!-- DAFTAR AKUN -->
+
+    <div class="profile-account-section">
+
+        <div class="profile-section-heading">
+
+            <div>
+                <span class="profile-section-label">
+                    ACCOUNT
+                </span>
+
+                <h3>Daftar Akun</h3>
+            </div>
+
+            <button
+                type="button"
+                id="profileAddAccountBtn"
+                class="profile-add-account-btn"
+            >
+                <i class="fa-solid fa-plus"></i>
+                Tambah Akun
+            </button>
+
+        </div>
+
+
+        <div
+            id="profileAccountsList"
+            class="profile-accounts-list"
+        ></div>
+
+    </div>
+
+</section>
+        
+        <!-- =================================================
+             HISTORI AKUN
+        ================================================== -->
+
+        <section
+            id="page-histori"
+            class="page"
+        >
+
+            <div class="page-heading">
+
+                <div>
+
+                    <h1>
+                        Histori Akun
+                    </h1>
+
+                    <p>
+                        Catatan aktivitas akun yang masuk
+                        ke sistem.
+                    </p>
+
+                </div>
+
+            </div>
+
+
+            <div
+                id="accountHistory"
+                class="history-list"
+            ></div>
+
+        </section>
+
+
+    </main>
+
+</div>
+
+
+<!-- =====================================================
+     MODAL TAMBAH / EDIT BARANG
+===================================================== -->
+
+<div
+    id="barangModal"
+    class="modal-overlay hidden"
+>
+
+    <div class="modal">
+
+
+        <div class="modal-header">
+
+            <div>
+
+                <h2 id="modalTitle">
+                    Tambah Barang
+                </h2>
+
+                <p>
+                    Masukkan informasi barang.
+                </p>
+
+            </div>
+
+
+            <button
+                class="modal-close"
+                data-close="barangModal"
+                type="button"
+            >
+
+                <i class="fa-solid fa-xmark"></i>
+
+            </button>
+
+        </div>
+
+
+        <form id="barangForm">
+
+            <input
+                type="hidden"
+                id="barangId"
+            >
+
+
+            <!-- GAMBAR -->
+
+            <div class="image-upload-area">
+
+                <div
+                    id="imagePreview"
+                    class="image-preview"
+                >
+
+                    <i class="fa-solid fa-image"></i>
+
+                    <span>
+                        Preview gambar
+                    </span>
+
+                </div>
+
+
+                <div class="image-upload-content">
+
+                    <label
+                        for="gambarBarang"
+                        class="upload-btn"
+                    >
+
+                        <i class="fa-solid fa-cloud-arrow-up"></i>
+
+                        Pilih Gambar
+
+                    </label>
+
+
+                    <input
+                        type="file"
+                        id="gambarBarang"
+                        accept="image/*"
+                        hidden
+                    >
+
+
+                    <small>
+                        JPG, PNG atau WEBP.
+                        Maksimal 2 MB.
+                    </small>
+
+                </div>
+
+            </div>
+
+
+            <!-- DATA BARANG -->
+
+            <div class="form-grid">
+
+
+                <!-- KODE BARANG -->
+
+                <div class="form-group">
+
+                    <label>
+                        Kode Barang
+                    </label>
+
+                    <input
+                        type="text"
+                        id="kodeBarang"
+                        placeholder="Contoh: BRG001"
+                        required
+                    >
+
+                </div>
+
+
+                <!-- NAMA BARANG -->
+
+                <div class="form-group">
+
+                    <label>
+                        Nama Barang
+                    </label>
+
+                    <input
+                        type="text"
+                        id="namaBarang"
+                        placeholder="Contoh: Laptop ASUS"
+                        required
+                    >
+
+                </div>
+
+
+                <!-- KATEGORI -->
+              <div class="form-group">
+
+    <label>
+        Kategori
+    </label>
+
+    <div class="custom-select" id="kategoriBarangSelect">
+
+        <button type="button" class="custom-select-trigger">
+            <span class="custom-select-value">
+                Pilih kategori
+            </span>
+            <i class="fa-solid fa-chevron-down"></i>
+        </button>
+
+        <div class="custom-select-options">
+
+            <button type="button" data-value="">
+                Pilih kategori
+            </button>
+
+            <button type="button" data-value="Makeup">
+                Makeup
+            </button>
+
+            <button type="button" data-value="Lotion">
+                Lotion
+            </button>
+
+            <button type="button" data-value="Aksesoris">
+                Aksesoris
+            </button>
+
+            <button type="button" data-value="Parfum">
+                Parfum
+            </button>
+
+            <button type="button" data-value="Lainnya">
+                Lainnya
+            </button>
+
+        </div>
+
+        <input type="hidden" id="kategoriBarang" value="">
+
+    </div>
+
+</div>
+                
+                <!-- STOK -->
+
+                <div class="form-group">
+
+                    <label>
+                        Stok
+                    </label>
+
+                    <input
+                        type="number"
+                        id="stokBarang"
+                        min="0"
+                        placeholder="Contoh: 10"
+                        required
+                    >
+
+                </div>
+
+
+                <!-- SATUAN -->
+
+                <div class="form-group">
+
+    <label>
+        Satuan
+    </label>
+
+    <div class="custom-select" id="satuanBarangSelect">
+
+        <button type="button" class="custom-select-trigger">
+            <span class="custom-select-value">
+                Pilih satuan
+            </span>
+            <i class="fa-solid fa-chevron-down"></i>
+        </button>
+
+        <div class="custom-select-options">
+
+            <button type="button" data-value="">
+                Pilih satuan
+            </button>
+
+            <button type="button" data-value="pcs">Pcs</button>
+            <button type="button" data-value="unit">Unit</button>
+            <button type="button" data-value="box">Box</button>
+            <button type="button" data-value="pack">Pack</button>
+            <button type="button" data-value="lusin">Lusin</button>
+            <button type="button" data-value="kg">Kg</button>
+            <button type="button" data-value="liter">Liter</button>
+
+        </div>
+
+        <input type="hidden" id="satuanBarang" value="">
+
+    </div>
+
+</div>
+
+                <!-- KONDISI -->
+<div class="form-group">
+
+    <label>
+        Kondisi
+    </label>
+
+    <div class="custom-select" id="kondisiBarangSelect">
+
+        <button type="button" class="custom-select-trigger">
+            <span class="custom-select-value">
+                Baik
+            </span>
+            <i class="fa-solid fa-chevron-down"></i>
+        </button>
+
+        <div class="custom-select-options">
+
+            <button type="button" data-value="Baik">
+                Baik
+            </button>
+
+            <button type="button" data-value="Rusak Ringan">
+                Rusak Ringan
+            </button>
+
+            <button type="button" data-value="Rusak Berat">
+                Rusak Berat
+            </button>
+
+        </div>
+
+        <input type="hidden" id="kondisiBarang" value="Baik">
+
+    </div>
+
+</div>
+                <!-- LOKASI -->
+
+                <div class="form-group">
+
+                    <label>
+                        Lokasi
+                    </label>
+
+                    <input
+                        type="text"
+                        id="lokasiBarang"
+                        placeholder="Contoh: Rak A1"
+                        required
+                    >
+
+                </div>
+
+
+                <!-- TANGGAL MASUK -->
+
+                <div class="form-group">
+
+                    <label>
+                        Tanggal Masuk
+                    </label>
+
+                    <div class="date-input-custom">
+    <input type="date" id="tanggalMasuk">
+    <i class="fa-solid fa-chevron-down"></i>
+</div>
+                </div>
+
+
+                <!-- HARGA -->
+
+                <div class="form-group">
+
+                    <label>
+                        Harga
+                    </label>
+
+                    <input
+                        type="number"
+                        id="hargaBarang"
+                        min="0"
+                        placeholder="Contoh: 250000"
+                        required
+                    >
+
+                </div>
+
+
+                <!-- SUPPLIER -->
+
+                <div class="form-group">
+
+                    <label>
+                        Supplier
+                    </label>
+
+                    <input
+                        type="text"
+                        id="supplierBarang"
+                        placeholder="Contoh: PT Sumber Jaya"
+                        required
+                    >
+
+                </div>
+
+            </div>
+
+
+            <!-- BUTTON -->
+
+            <div class="modal-actions">
+
+                <button
+                    type="button"
+                    class="cancel-btn"
+                    data-close="barangModal"
+                >
+
+                    Batal
+
+                </button>
+
+
+                <button
+                    type="submit"
+                    class="primary-btn"
+                >
+
+                    <i class="fa-solid fa-floppy-disk"></i>
+
+                    Simpan Barang
+
+                </button>
+
+            </div>
+
+        </form>
+
+    </div>
+
+</div>
+
+
+<!-- =====================================================
+     MODAL DETAIL BARANG
+===================================================== -->
+
+<div
+    id="detailModal"
+    class="modal-overlay hidden"
+>
+
+    <div class="modal detail-modal">
+
+
+        <div class="modal-header">
+
+            <div>
+
+                <h2>
+                    Detail Barang
+                </h2>
+
+                <p>
+                    Informasi lengkap barang.
+                </p>
+
+            </div>
+
+
+            <button
+                class="modal-close"
+                data-close="detailModal"
+                type="button"
+            >
+
+                <i class="fa-solid fa-xmark"></i>
+
+            </button>
+
+        </div>
+
+
+        <div
+            id="detailContent"
+            class="detail-content"
+        ></div>
+
+    </div>
+
+</div>
+
+<!-- =====================================================
+     MODAL GANTI AKUN
+===================================================== -->
+
+<div
+    id="accountPasswordModal"
+    class="modal-overlay hidden"
+>
+
+    <div class="modal">
+
+        <div class="modal-header">
+
+            <div>
+                <h2>Ganti Akun</h2>
+
+                <p id="passwordModalText">
+                    Masukkan sandi akun.
+                </p>
+            </div>
+
+            <button
+                id="closePasswordModal"
+                class="modal-close"
+                type="button"
+            >
+                <i class="fa-solid fa-xmark"></i>
+            </button>
+
+        </div>
+
+
+        <div class="form-group">
+
+            <label>
+                Sandi Akun
+            </label>
+
+            <div class="input-icon password-box">
+
+                <i class="fa-solid fa-lock"></i>
+
+                <input
+                    type="password"
+                    id="accountPasswordInput"
+                    placeholder="Masukkan sandi"
+                    autocomplete="current-password"
+                >
+
+                <button
+                    type="button"
+                    id="toggleAccountPassword"
+                    class="show-password"
+                    aria-label="Tampilkan sandi"
+                >
+                    <i class="fa-solid fa-eye"></i>
+                </button>
+
+            </div>
+
+        </div>
+
+
+        <p
+            id="accountPasswordError"
+            class="form-message"
+        ></p>
+
+
+        <div class="modal-actions">
+
+            <button
+                type="button"
+                id="cancelPasswordModal"
+                class="cancel-btn"
+            >
+                Batal
+            </button>
+
+            <button
+                type="button"
+                id="submitPasswordModal"
+                class="primary-btn"
+            >
+                <i class="fa-solid fa-right-to-bracket"></i>
+                Ganti Akun
+            </button>
+
+        </div>
+
+    </div>
+
+</div>
+
+<!-- =====================================================
+     MODAL HAPUS AKUN
+===================================================== -->
+
+<div
+    id="deleteAccountModal"
+    class="modal-overlay hidden"
+>
+
+    <div class="modal">
+
+        <div class="modal-header">
+
+            <div>
+
+                <h2>
+                    Hapus Akun
+                </h2>
+
+                <p id="deleteAccountModalText">
+                    Apakah kamu yakin ingin menghapus akun ini?
+                </p>
+
+            </div>
+
+            <button
+                id="closeDeleteModal"
+                class="modal-close"
+                type="button"
+            >
+
+                <i class="fa-solid fa-xmark"></i>
+
+            </button>
+
+        </div>
+
+
+        <div class="delete-account-warning">
+
+            <div class="delete-account-warning-icon">
+                <i class="fa-solid fa-triangle-exclamation"></i>
+            </div>
+
+            <div>
+                <strong>Perhatian</strong>
+
+                <p>
+                    Data akun yang dihapus tidak dapat digunakan
+                    kembali.
+                </p>
+            </div>
+
+        </div>
+
+
+        <div class="modal-actions">
+
+            <button
+                type="button"
+                id="cancelDeleteModal"
+                class="cancel-btn"
+            >
+                Batal
+            </button>
+
+
+            <button
+                type="button"
+                id="submitDeleteModal"
+                class="delete-confirm-btn"
+            >
+
+                <i class="fa-solid fa-trash"></i>
+
+                Hapus Akun
+
+            </button>
+
+        </div>
+
+    </div>
+
+</div>
+  
+<!-- =====================================================
+     MODAL KONFIRMASI TRANSAKSI STOK
+===================================================== -->
+<div id="stockTransactionConfirm" class="modal-overlay hidden">
+    <div class="modal stock-confirm-modal">
+        <div class="modal-header">
+            <div>
+                <h2>Konfirmasi Transaksi</h2>
+                <p>Periksa perubahan stok sebelum disimpan.</p>
+            </div>
+            <button class="modal-close" data-close="stockTransactionConfirm" type="button">
+                <i class="fa-solid fa-xmark"></i>
+            </button>
+        </div>
+        <div id="stockConfirmContent" class="stock-confirm-content"></div>
+        <div class="modal-actions">
+            <button type="button" class="cancel-btn" data-close="stockTransactionConfirm">Batal</button>
+            <button type="button" id="confirmStockTransaction" class="primary-btn"><i class="fa-solid fa-check"></i> Simpan</button>
+        </div>
+    </div>
+</div>
+
+<script src="google-sheets-config.js"></script>
+<script src="script.js"></script>
+<script>
+if ("serviceWorker" in navigator) {
+    window.addEventListener("load", () => {
+        navigator.serviceWorker.register("./service-worker.js")
+            .then(() => console.log("Service Worker aktif"))
+            .catch(error => console.error("Service Worker gagal:", error));
+    });
+}
+</script>
+</body>
+</html>
